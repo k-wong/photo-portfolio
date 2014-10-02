@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="photoApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Photo</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js" type="text/javascript"></script>
+		<script src="js/controllers.js"></script>
+		
+		<link href="style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>About</li>
+			</ul>
+		</nav>
+		<div class="photo-wrapper" ng-controller="PhotoController">
+			<div class="carousel" id="carousel">
+				<div id="fade-left"></div>
+				<div id="fade-right"></div>
+				<ul class="carousel-list start">
+					<!--Use directive to access focused img, instead of ID#?-->
+					<li ng-repeat="photo in photos | filter:currentSet " id="{{$index}}">
+						<img src="{{photo.src}}" class="carousel-image" />
+						<div class="carousel-image-title">{{photo.caption}} {{$index}} </div>
+					</li>
+
+				</ul>
+			</div>
+			
+			<div class="sets">
+				<!--<select ng-model='currentSet' ng-options="photo.set for photo in photos | unique:'set' "></select>-->
+				<select ng-model='currentSet'>
+					<option>Test</option>
+					<option>Test2</option>
+				</select>
+				
+				<select ng-model='currentCaption' ng-options='photo.caption for photo in photos'></select>
+			</div>
+		</div>
+	</body>
+
+	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="js/colors.js"></script>
+	<script src="js/carousel.js"></script>
+</html>
